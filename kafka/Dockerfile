@@ -17,7 +17,7 @@ ENV PATH $PATH:$KAFKA_HOME/bin
 
 #kafka config copy
 ADD config/zookeeper.properties $KAFKA_HOME/config/zookeeper.properties
-ADD config/server.properties $KAFKA_HOME/config/server.properties
+ADD config/server.properties $KAFKA_HOME/config/server.properties.template
 ADD config/start-kafka.sh /start-kafka.sh
 RUN chmod +x /start-kafka.sh
 RUN mkdir -p /tmp/zookeeper

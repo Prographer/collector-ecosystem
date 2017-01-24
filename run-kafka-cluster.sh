@@ -19,6 +19,8 @@ docker run -itd \
                 --name kafka-1 \
                 --hostname kafka-1 \
                 --env KAFKA_BROKER_ID=1 \
+				--env KAFKA_ADVERTISED_HOST_NAME=$(docker-machine ip dev) \
+				--env KAFKA_PORT=9092 \
                 kafka:1.0 &> /dev/null
 
 i=2

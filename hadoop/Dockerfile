@@ -60,6 +60,10 @@ RUN chmod +x /hadoop-init.sh
 ADD config/flume-init.sh /flume-init.sh
 RUN chmod +x /flume-init.sh
 
+ADD config/flume-kafka2hdfs.conf.template /usr/local/flume/conf/kafka2hdfs.conf
+ADD config/flume-start.sh.template /flume-start.sh
+RUN chmod +x /flume-start.sh
+
 # Hdfs ports
 EXPOSE 50010 50020 50070 50075 50090 8020 9000
 # Mapred ports

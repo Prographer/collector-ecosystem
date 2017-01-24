@@ -20,6 +20,8 @@
 # The id of the broker. This must be set to a unique integer for each broker.
 broker.id={{KAFKA_BROKER_ID}}
 
+advertised.host.name={{KAFKA_ADVERTISED_HOST_NAME}}
+
 # Switch to enable topic deletion or not, default value is false
 #delete.topic.enable=true
 
