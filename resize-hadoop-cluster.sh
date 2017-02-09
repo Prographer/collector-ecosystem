@@ -24,4 +24,4 @@ done
 echo -e "\n2. build docker hadoop image\n"
 dir=$(pwd)
 
-docker build --tag hadoop:1.0 hadoop/.
+docker build --tag hadoop:2.7.3 hadoop/.

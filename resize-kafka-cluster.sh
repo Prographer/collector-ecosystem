@@ -2,7 +2,7 @@
 
 # N is the node number of kafka cluster
 N=$1
-
+ZK_PREFIX=${2:-kafka}
 
 if [ $# = 0 ]
 then
@@ -20,11 +20,11 @@ echo -e " - zookeeper server"
 i=1
 while [ $i -le $N ]
 do
-	zookeeper_server="server.$i=kafka-$i:2888:3888"
+	zookeeper_server="server.$i=$ZK_PREFIX-$i:2888:3888"
 	echo -e $zookeeper_server >> kafka/config/zookeeper.properties
 	echo -e "\t$zookeeper_server"
 
-	connection_string+="kafka-$i:2181,"
+	connection_string+="$ZK_PREFIX-$i:2181,"
 	((i++))
 done
 
@@ -32,4 +32,4 @@ echo -e "\n2. make server.properties\n - zookeeper connection string\n\t"${conne
 sed 's/{{ZOOKEEPER_CONNECTIONS}}/'"${connection_string%,}"'/g' kafka/config/server.properties.template > kafka/config/server.properties
 
 echo -e "\n3. build docker kafka image\n"
-docker build --tag kafka:1.0 kafka/.
+docker build --tag kafka:0.10.11 kafka/.

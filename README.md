@@ -32,14 +32,18 @@ docker network create --driver=bridge hadoop
 ```
 2. Kafka Cluster 생성
 ```
-kafka/resize-cluster.sh [Number of Clusters]
+resize-kafka-cluster.sh [Number of Clusters] [Zookeeper prefix]
 ```
+  - Number of Cluster: 클러스터 수
+  - Zookeeper prefix: 주키퍼 서버를 따로 운영 할 경우
+    - 현재 zk/Docker를 실행하면 zk-1,zk-2와 같은 형태가 생성 되므로 prefix에 zk넣음
+  - ex) resize-kafka-cluster.sh 3 zk
 
 3. Kafka 실행
 ```
-kafka/run-cluster.sh [Number of Clusters]
+kafka/run-kafka-cluster.sh [Number of Clusters] [RUN_ZK(true or false)]
 ```
-
+  - 내장 Zookeeper를 사용할 경우 true, 외부 Zookeeper를 사용 할 경우 false
 4. Hadoop Cluster 생성(Master에 Flume 설치)
 ```
 hadoop/resize-cluster.sh [Number of Clusters]

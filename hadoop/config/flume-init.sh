@@ -18,7 +18,13 @@ elif [[ "$1"="setup" ]]; then
 
         echo "Flume Path setting"
         cp $FLUME_HOME/conf/flume-env.sh.template $FLUME_HOME/conf/flume-env.sh
+        cp /kafka2hdfs.conf.template $FLUME_HOME/conf/kafka2hdfs.conf
         sed -i '/^#FLUME_CLASSPATH=""/ s:.*:FLUME_CLASSPATH="'"$HADOOP_PREFIX"'/share/hadoop/common/lib/zookeeper-3.4.6.jar":' $FLUME_HOME/conf/flume-env.sh
+
+        export FLUME_HOME=/usr/local/flume
+        export PATH=$PATH:$FLUME_HOME/bin
+
+        cd /
 
         echo "Flume Setup Success!"
     else

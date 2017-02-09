@@ -8,6 +8,7 @@ USER root
 
 #install dev tools
 RUN apt-get update -y
+RUN apt-get install -y libsnappy1v5
 
 # kafka
 RUN curl -Ls http://apache.tt.co.kr/kafka/0.10.1.1/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar -xz -C /usr/local/

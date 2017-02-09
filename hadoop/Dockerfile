@@ -7,7 +7,7 @@ ARG HADOOP_VERSION=2.7.3
 
 #install dev tools
 RUN apt-get update
-RUN apt-get install -y openssh-server openssh-client rsync
+RUN apt-get install -y openssh-server openssh-client rsync libsnappy1v5
 
 #ssh setting
 ADD config/ssh-config /root/.ssh/config
@@ -60,7 +60,7 @@ RUN chmod +x /hadoop-init.sh
 ADD config/flume-init.sh /flume-init.sh
 RUN chmod +x /flume-init.sh
 
-ADD config/flume-kafka2hdfs.conf.template /usr/local/flume/conf/kafka2hdfs.conf
+ADD config/flume-kafka2hdfs.conf.template /kafka2hdfs.conf.template
 ADD config/flume-start.sh.template /flume-start.sh
 RUN chmod +x /flume-start.sh
 
