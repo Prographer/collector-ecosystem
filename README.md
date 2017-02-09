@@ -4,7 +4,11 @@
   이 시스템은 Kafka + Flume + Hadoop을 용해서 데이터를 수집하는 Docker File이다.
 ## 참고
   Hadoop:
-  Kafka: https://github.com/ches/docker-kafka
+    - https://github.com/sequenceiq/hadoop-docker
+    - http://kiwenlau.com/2016/06/26/hadoop-cluster-docker-update-english/
+  Kafka:
+    - https://github.com/ches/docker-kafka
+
 ## version
   - Java: Oracle jdk 8.121
   - Hadoop: 2.7.3
@@ -46,12 +50,12 @@ kafka/run-kafka-cluster.sh [Number of Clusters] [RUN_ZK(true or false)]
   - 내장 Zookeeper를 사용할 경우 true, 외부 Zookeeper를 사용 할 경우 false
 4. Hadoop Cluster 생성(Master에 Flume 설치)
 ```
-hadoop/resize-cluster.sh [Number of Clusters]
+resize-hadoop-cluster.sh [Number of Clusters]
 ```
 
 5. Hadoop Cluster 실행
 ```
-hadoop/run-cluster.sh [Number of Clusters]
+run-hadoop-cluster.sh [Number of Clusters]
 ```
 run-cluster를 실행하면 hadoop-master container로 접속 된다.  
 master로 접속 수 아래 명령어를 수행한다.
@@ -74,4 +78,17 @@ master로 접속 수 아래 명령어를 수행한다.
       참고: conf에서 tier1.sources.src1.zookeeperConnect에
            kafka의 zookeeper 주소를 입력해야함
     - flume-start.sh.template을 이용하여 sh을 수정 한다.
+```
+
+
+## Zookeeper 서버를 따로 운영 할 경우
+1. Zookeeper 생성
+```
+resize-zk-cluster.sh [Number of Node]
+```
+
+2. Zookeeper 실행
+
+```
+run-zk-cluster.sh [Number of Node]
 ```
