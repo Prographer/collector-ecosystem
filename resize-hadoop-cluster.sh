@@ -2,7 +2,7 @@
 
 # N is the node number of hadoop cluster
 N=${1:-3}
-
+HADOOP_VERSION=2.7.3
 
 if [ $# = 0 ]
 then
@@ -24,4 +24,4 @@ done
 echo -e "\n2. build docker hadoop image\n"
 dir=$(pwd)
 
-docker build --tag hadoop:2.7.3 hadoop/.
+docker build --tag hadoop:$HADOOP_VERSION hadoop/.

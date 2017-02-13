@@ -2,6 +2,7 @@
 
 # the default node number is 3
 N=${1:-3}
+HADOOP_VERSION=2.7.3
 
 echo "check docker network."
 if  ! docker network ls | grep -q 'hadoop'; then
@@ -22,7 +23,7 @@ docker run -itd \
                 -p 9000:9000 \
                 --name hadoop-master \
                 --hostname hadoop-master \
-                hadoop:1.0 &> /dev/null
+                hadoop:$HADOOP_VERSION &> /dev/null
 
 
 # start hadoop slave container
@@ -36,7 +37,7 @@ do
 	                --net=hadoop \
 	                --name hadoop-slave$i \
 	                --hostname hadoop-slave$i \
-	                hadoop:1.0 &> /dev/null
+	                hadoop:$HADOOP_VERSION &> /dev/null
 	i=$(( $i + 1 ))
 done
 

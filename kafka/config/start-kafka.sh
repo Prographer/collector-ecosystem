@@ -8,7 +8,7 @@ else
     -e "s|{{KAFKA_BROKER_ID}}|${KAFKA_BROKER_ID:-0}|g" \
     -e "s|{{KAFKA_ADVERTISED_HOST_NAME}}|${KAFKA_ADVERTISED_HOST_NAME:-$IP}|g" > /usr/local/kafka/config/server.properties
 
-    if [[ $RUN_ZK == "false" ]]; then
+    if [[ $RUN_ZK == "true" ]]; then
         echo -e "zookeeper server start: #$KAFKA_BROKER_ID\n"
         zookeeper-server-start.sh -daemon /usr/local/kafka/config/zookeeper.properties
     fi

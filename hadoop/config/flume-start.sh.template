@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "flume start"
-nohup flume-ng agent -n agent -c /usr/local/flume/conf -f /usr/local/flume/conf/kafka2hdfs.conf -Dflume.root.logger=INFO,console > /dev/null
+nohup flume-ng agent -n agent -c /usr/local/flume/conf -f /usr/local/flume/conf/kafka2hdfs.conf -Dflume.root.logger=INFO,console &
