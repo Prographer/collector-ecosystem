@@ -1,32 +1,33 @@
-agent.sources  = kafka_src
-agent.channels = ch
-agent.sinks = hdfs_sink
+agent.sources  = kafka-src
+agent.channels = hdfs-channel
+agent.sinks = hdfs-sink
 
-agent.sources.kafka_src.type = org.apache.flume.source.kafka.KafkaSource
-agent.sources.kafka_src.kafka.bootstrap.servers = kafka-1:9092
-agent.sources.kafka_src.kafka.topics = weblogs,topic1,topic2
-agent.sources.kafka_src.kafka.consumer.group.id = flume
-agent.sources.kafka_src.channels = ch
-agent.sources.kafka_src.interceptors = i1
-agent.sources.kafka_src.interceptors.i1.type = timestamp
-agent.sources.kafka_src.kafka.consumer.timeout.ms = 100
+agent.sources.kafka-src.type = org.apache.flume.source.kafka.KafkaSource
+agent.sources.kafka-src.kafka.bootstrap.servers = kafka-1:9092
+agent.sources.kafka-src.kafka.topics = weblogs,topic1,topic2
+agent.sources.kafka-src.kafka.consumer.group.id = flume
+agent.sources.kafka-src.channels = hdfs-channel
+agent.sources.kafka-src.interceptors = i1
+agent.sources.kafka-src.interceptors.i1.type = timestamp
+agent.sources.kafka-src.kafka.consumer.timeout.ms = 100
 
-agent.channels.ch.type = memory
-agent.channels.ch.capacity = 10000
-agent.channels.ch.transactionCapacity = 1000
+agent.channels.hdfs-channel.type = memory
+agent.channels.hdfs-channel.capacity = 10000
+agent.channels.hdfs-channel.transactionCapacity = 1000
 
-agent.sinks.hdfs_sink.type = hdfs
-agent.sinks.hdfs_sink.hdfs.fileType=DataStream
-agent.sinks.hdfs_sink.hdfs.fileSuffix=.avro
-agent.sinks.hdfs_sink.hdfs.path = /logs/%{topic}
-agent.sinks.hdfs_sink.hdfs.writeFormat=Text
-agent.sinks.hdfs_sink.hdfs.fileType = DataStream
-agent.sinks.hdfs_sink.hdfs.fileSuffix=.avro
-agent.sinks.hdfs_sink.serializer=avro_event
-agent.sinks.hdfs_sink.serializer.compressionCodec=snappy
+agent.sinks.hdfs-sink.channel = hdfs-channel
+agent.sinks.hdfs-sink.type = hdfs
+agent.sinks.hdfs-sink.hdfs.fileType=DataStream
+agent.sinks.hdfs-sink.hdfs.writeFormat=Text
+agent.sinks.hdfs-sink.hdfs.fileType = DataStream
+agent.sinks.hdfs-sink.hdfs.path = /logs/%{topic}
+agent.sinks.hdfs-sink.hdfs.rollInterval = 10
+agent.sinks.hdfs-sink.hdfs.rollSize = 0
+agent.sinks.hdfs-sink.hdfs.rollCount = 0
 
-#Default: 30second
-agent.sinks.hdfs_sink.hdfs.rollInterval = 10
-agent.sinks.hdfs_sink.hdfs.rollSize = 0
-agent.sinks.hdfs_sink.hdfs.rollCount = 0
-agent.sinks.hdfs_sink.channel = ch
+
+#Avro Save
+#agent.sinks.hdfs-sink.hdfs.fileSuffix=.avro
+#agent.sinks.hdfs-sink.hdfs.fileSuffix=.avro
+#agent.sinks.hdfs-sink.serializer=avro_event
+#agent.sinks.hdfs-sink.serializer.compressionCodec=snappy

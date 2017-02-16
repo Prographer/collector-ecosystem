@@ -1,0 +1,33 @@
+#https://blog.cloudera.com/blog/2014/11/flafka-apache-flume-meets-apache-kafka-for-event-processing/
+# Sources, channels, and sinks are defined per
+# agent name, in this case flume1.
+flume1.sources  = kafka-source-1
+flume1.channels = hdfs-channel-1
+flume1.sinks    = kafka-sink-1
+
+# For each source, channel, and sink, set
+# standard properties.
+flume1.sources.kafka-source-1.type = org.apache.flume.source.kafka.KafkaSource
+flume1.sources.kafka-source-1.kafka.bootstrap.servers = kafka-1:9092
+flume1.sources.kafka-source-1.kafka.topics = weblogs,topic1,topic2
+flume1.sources.kafka-source-1.kafka.consumer.group.id = flume
+flume1.sources.kafka-source-1.batchSize = 5
+flume1.sources.kafka-source-1.batchDurationMillis = 200
+flume1.sources.kafka-source-1.channels = hdfs-channel-1
+
+flume1.sources.kafka-source-1.interceptors = int-1
+flume1.sources.kafka-source-1.interceptors.int-1.type=cloudera.se.fraud.demo.flume.interceptor.FraudEventInterceptor$Builder
+flume1.sources.kafka-source-1.interceptors.int-1.threadNum = 200
+flume1.channels.hdfs-channel-1.type = memory
+
+flume1.sinks.kafka-sink-1.channel = hdfs-channel-1
+flume1.sinks.kafka-sink-1.type = org.apache.flume.sink.kafka.KafkaSink
+flume1.sinks.kafka-sink-1.batchSize = 5
+flume1.sinks.kafka-sink-1.brokerList = kafka1.ent.cloudera.com:9092
+flume1.sinks.kafka-sink-1.topic = flume.auths
+
+# Other properties are specific to each type of
+# source, channel, or sink. In this case, we
+# specify the capacity of the memory channel.
+flume1.channels.hdfs-channel-1.capacity = 10000
+flume1.channels.hdfs-channel-1.transactionCapacity = 10000
