@@ -3,7 +3,7 @@
 # N is the node number of kafka cluster
 N=$1
 RUN_ZK=${2:-true}
-KAFKA_VERSION=0.10.11
+KAFKA_VERSION=1.0.1
 
 if [ $# = 0 ]
 then

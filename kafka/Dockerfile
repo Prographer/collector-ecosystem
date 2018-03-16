@@ -2,7 +2,7 @@ FROM prographerj/ubuntu16-java8
 MAINTAINER Prographer J<prographer.j@gmail.com>
 
 ARG SCALA_VERSION=2.11
-ARG KAFKA_VERSION=0.10.1.1
+ARG KAFKA_VERSION=1.0.1
 ARG JMX_PORT=8429
 USER root
 
@@ -11,7 +11,7 @@ RUN apt-get update -y
 RUN apt-get install -y libsnappy1v5
 
 # kafka
-RUN curl -Ls http://apache.tt.co.kr/kafka/0.10.1.1/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar -xz -C /usr/local/
+RUN curl -Ls http://mirror.navercorp.com/apache/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./kafka_${SCALA_VERSION}-${KAFKA_VERSION} kafka
 ENV KAFKA_HOME /usr/local/kafka
 ENV PATH $PATH:$KAFKA_HOME/bin
