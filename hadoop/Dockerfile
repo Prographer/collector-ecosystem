@@ -21,7 +21,7 @@ RUN /usr/bin/ssh-keygen -A
 RUN echo "/usr/sbin/sshd" >> ~/.bashrc
 
 # hadoop
-RUN curl -Ls http://www.apache.org/dyn/closer.cgi/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz | tar -xz -C /usr/local/
+RUN curl -Ls http://apache.melbourneitmirror.net/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-$HADOOP_VERSION hadoop
 RUN cd /usr/local/hadoop && mkdir -p logs
 
