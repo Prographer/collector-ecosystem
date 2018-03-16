@@ -3,7 +3,7 @@ MAINTAINER Prographer J<prographer.j@gmail.com>
 
 USER root
 
-ARG HADOOP_VERSION=2.7.3
+ARG HADOOP_VERSION=2.7.5
 
 #install dev tools
 RUN apt-get update
@@ -21,7 +21,7 @@ RUN /usr/bin/ssh-keygen -A
 RUN echo "/usr/sbin/sshd" >> ~/.bashrc
 
 # hadoop
-RUN curl -Ls http://apache.tt.co.kr/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz | tar -xz -C /usr/local/
+RUN curl -Ls http://www.apache.org/dyn/closer.cgi/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-$HADOOP_VERSION hadoop
 RUN cd /usr/local/hadoop && mkdir -p logs
 
