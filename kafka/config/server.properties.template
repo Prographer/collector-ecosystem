@@ -20,7 +20,7 @@
 # The id of the broker. This must be set to a unique integer for each broker.
 broker.id={{KAFKA_BROKER_ID}}
 
-advertised.host.name={{KAFKA_ADVERTISED_HOST_NAME}}
+#advertised.host.name={{KAFKA_ADVERTISED_HOST_NAME}}
 
 # Switch to enable topic deletion or not, default value is false
 #delete.topic.enable=true
@@ -39,7 +39,8 @@ advertised.host.name={{KAFKA_ADVERTISED_HOST_NAME}}
 # it uses the value for "listeners" if configured.  Otherwise, it will use the value
 # returned from java.net.InetAddress.getCanonicalHostName().
 #advertised.listeners=PLAINTEXT://your.host.name:9092
-
+advertised.listeners=PLAINTEXT://{{KAFKA_ADVERTISED_HOST_NAME}}:9092
+offsets.topic.replication.factor=1
 # The number of threads handling network requests
 num.network.threads=3
 
