@@ -32,4 +32,4 @@ echo -e "\n2. make server.properties\n - zookeeper connection string\n\t"${conne
 sed 's/{{ZOOKEEPER_CONNECTIONS}}/'"${connection_string%,}"'/g' kafka/config/server.properties.template > kafka/config/server.properties
 
 echo -e "\n3. build docker kafka image\n"
-docker build --tag kafka:1.1.1 kafka/.
+docker build --tag kafka:1.0.1 kafka/.

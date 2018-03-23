@@ -2,7 +2,7 @@
 
 # N is the node number of hadoop cluster
 N=${1:-3}
-HADOOP_VERSION=2.7.3
+HADOOP_VERSION=2.7.5
 
 if [ $# = 0 ]
 then

@@ -23,7 +23,7 @@ if [[ $RUN_ZK == "true" ]]; then
 	                --name kafka-1 \
 	                --hostname kafka-1 \
 	                --env KAFKA_BROKER_ID=1 \
-					--env KAFKA_ADVERTISED_HOST_NAME=$(docker-machine ip collector) \
+					--env KAFKA_ADVERTISED_HOST_NAME=$(docker-machine ip dev) \
 					--env KAFKA_PORT=9092 \
 					--env RUN_ZK=$RUN_ZK \
 	                kafka:$KAFKA_VERSION &> /dev/null
@@ -34,7 +34,7 @@ else
 	                --name kafka-1 \
 	                --hostname kafka-1 \
 	                --env KAFKA_BROKER_ID=1 \
-					--env KAFKA_ADVERTISED_HOST_NAME=$(docker-machine ip collector) \
+					--env KAFKA_ADVERTISED_HOST_NAME=$(docker-machine ip dev) \
 					--env KAFKA_PORT=9092 \
 					--env RUN_ZK=$RUN_ZK \
 	                kafka:$KAFKA_VERSION &> /dev/null
